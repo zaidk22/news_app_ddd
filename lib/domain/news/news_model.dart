@@ -37,6 +37,9 @@ class NewsDataModel extends Equatable {
       @override
     
       List<Object?> get props => [status,totalResults,articles];
+
+  @override
+  String toString() => 'NewsDataModel(status: $status, totalResults: $totalResults, articles: $articles)';
 }
 
 class Articles {
