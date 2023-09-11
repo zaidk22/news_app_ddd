@@ -19,7 +19,7 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider<NewsBloc>(
         create: (context) {
-           return getIt<NewsBloc>();
+           return getIt<NewsBloc>()..add(const NewsEvent.initialized());
         }),
       ],
     

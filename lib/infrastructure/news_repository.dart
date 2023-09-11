@@ -8,8 +8,10 @@ import 'package:news_app_bloc/domain/news/i_news_facade.dart';
 import 'package:news_app_bloc/domain/news/news_failure.dart';
 import 'package:news_app_bloc/domain/news/news_model.dart';
 
-@LazySingleton(as :INewsFacade)
+//@LazySingleton(as :INewsFacade)
+@injectable
 class NewsRepository implements INewsFacade{
+  NewsRepository();
   @override
   Future<Either<NewsFailure, NewsDataModel>> getNews() async {
     final url = Uri.parse("https://newsapi.org/v2/top-headlines?pageSize=100&page=1&country=in&apiKey=223c39d619d8432aae88cacbc37b1238");

@@ -11,9 +11,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:news_app_bloc/application/news/news_bloc.dart' as _i5;
-import 'package:news_app_bloc/domain/news/i_news_facade.dart' as _i3;
-import 'package:news_app_bloc/infrastructure/news_repository.dart' as _i4;
+import 'package:news_app_bloc/application/news/news_bloc.dart' as _i4;
+import 'package:news_app_bloc/infrastructure/news_repository.dart' as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -26,8 +25,8 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i3.INewsFacade>(() => _i4.NewsRepository());
-    gh.factory<_i5.NewsBloc>(() => _i5.NewsBloc(gh<_i4.NewsRepository>()));
+    gh.factory<_i3.NewsRepository>(() => _i3.NewsRepository());
+    gh.factory<_i4.NewsBloc>(() => _i4.NewsBloc(gh<_i3.NewsRepository>()));
     return this;
   }
 }

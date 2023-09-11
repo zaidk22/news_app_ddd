@@ -14,28 +14,15 @@ part 'news_bloc.freezed.dart';
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository _newsRepository;
   NewsBloc(this._newsRepository) : super(const NewsState.initial()) {
-    on<_Initialized>((event, emit) {
+    on<_Initialized>((event, emit) async {
          emit(const NewsState.initial());
-    });
-      on<_ArticleLoaded>((event, emit) async {
-    
-          final response = await _newsRepository.getNews();
+            final response = await _newsRepository.getNews();
           emit.call(
             response.fold((l) => const NewsState.failure(),
              (r) => NewsState.loaded(r.articles ?? []))
 
           );
-
     });
-       on<_ArticleLoaded>((event, emit) async {
-    
-          final response = await _newsRepository.getNews();
-          emit.call(
-            response.fold((l) => const NewsState.failure(),
-             (r) => NewsState.loaded(r.articles ?? []))
-
-          );
-
-    });
+      
   }
 }
