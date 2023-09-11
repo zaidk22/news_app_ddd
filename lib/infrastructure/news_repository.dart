@@ -3,11 +3,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:news_app_bloc/domain/news/i_news_facade.dart';
 import 'package:news_app_bloc/domain/news/news_failure.dart';
 import 'package:news_app_bloc/domain/news/news_model.dart';
 
-
+@LazySingleton(as :INewsFacade)
 class NewsRepository implements INewsFacade{
   @override
   Future<Either<NewsFailure, NewsDataModel>> getNews() async {

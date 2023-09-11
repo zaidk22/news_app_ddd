@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_bloc/application/news/news_bloc.dart';
 
+import '../injection.dart';
 import '../routes/routes.dart';
 import 'life_cycle_watcher.dart';
 
@@ -12,7 +15,15 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppRouter appRouter = AppRouter();
-    return LifecycleWatcher(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NewsBloc>(
+        create: (context) {
+           return getIt<NewsBloc>();
+        }),
+      ],
+    
+     child: LifecycleWatcher(
       
         child: MaterialApp.router(
           routerConfig: appRouter.config(),
@@ -24,6 +35,8 @@ class AppWidget extends StatelessWidget {
          
         ),
    
-    );
+    )
+  );
+  
   }
 }
